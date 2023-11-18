@@ -8,15 +8,15 @@ exports.getOne = (Model, popOptions) =>
 
         if (popOptions) query = query.populate(popOptions);
 
-        const doc = await query;
+        const data = await query;
 
-        if (!doc) {
+        if (!data) {
             return next(new AppError('No document found with that id', 404));
         }
 
         res.status(200).json({
             status: 'success',
-            data: doc,
+            data,
         });
     });
 
@@ -30,14 +30,12 @@ exports.getAll = (Model, popOptions) =>
             .limitFields()
             .paginate();
 
-        const doc = await features.query;
+        const data = await features.query;
 
         // SEND RESPONSE
         res.status(200).json({
             status: 'success',
-            results: doc.length,
-            data: {
-                doc,
-            },
+            results: data.length,
+            data,
         });
     });
