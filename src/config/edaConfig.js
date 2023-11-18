@@ -1,7 +1,3 @@
-// import { Client } from '@stomp/stompjs';
-// import { WebSocket } from 'ws';
-// import { createLog } from './createLog';
-
 const Client = require('@stomp/stompjs').Client;
 const WebSocket = require('ws');
 const { createLog } = require('./createLog');
