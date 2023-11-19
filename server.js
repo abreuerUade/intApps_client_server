@@ -2,7 +2,7 @@ const app = require('./src/app.js');
 const mongoose = require('mongoose');
 const connectDB = require('./src/database/mongoConn');
 const { client } = require('./src/config/edaConfig.js');
-
+const https = require('https');
 connectDB();
 
 const port = process.env.PORT || 3000;
@@ -17,6 +17,11 @@ mongoose.connection.once('open', () => {
 });
 
 client.activate();
+
+setInterval(function () {
+    https.get('https://intapps-client-server.onrender.com/api/v1/ping');
+}, 60000);
+
 process.on('unhandledRejection', err => {
     console.log(err.name, err.message);
 });
