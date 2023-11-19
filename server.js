@@ -20,7 +20,8 @@ client.activate();
 
 setInterval(function () {
     https.get('https://intapps-client-server.onrender.com/api/v1/ping');
-}, 60000);
+    console.log('Waky waky');
+}, 600000);
 
 process.on('unhandledRejection', err => {
     console.log(err.name, err.message);
