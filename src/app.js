@@ -5,6 +5,7 @@ const cors = require('cors');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const eventLogRoutes = require('./routes/eventLogRoutes');
+const rabbitRoutes = require('./routes/rabbitRoutes');
 
 // App y middlewares
 const app = express();
@@ -24,6 +25,8 @@ app.get('/api/v1/ping', (req, res) => {
 });
 
 app.use('/api/v1/logs', eventLogRoutes);
+
+app.use('/api/v1/rabbit', rabbitRoutes);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Cant find ${req.originalUrl} on this server`, 404));
