@@ -39,6 +39,13 @@ const client = new Client({
     },
     onDisconnect: () => {
         console.log('Disconnected from websocket');
+        client.unsubscribe('/topic/usuarios');
+        client.unsubscribe('/topic/robots');
+        client.unsubscribe('/topic/marketplace');
+        client.unsubscribe('/topic/admin-personal');
+        client.unsubscribe('/topic/core-bancario');
+        client.unsubscribe('/topic/analitica');
+        client.unsubscribe('/topic/core-contable');
     },
     onStompError: frame => {
         console.log('Broker reported error: ' + frame.headers['message']);
